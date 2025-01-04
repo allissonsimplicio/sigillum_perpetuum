@@ -1,16 +1,29 @@
 services:
-  backend:
-    build: .
-    container_name: backend
+  ipfs:
+    image: ipfs/kubo:latest
+    ports:
+      - "5001:5001"
+      - "8080:8080"
+      - "4001:4001"
     volumes:
-      - ./src:/usr/src/app
-      - backend_data:/data
-    working_dir: /usr/src/app
+      - ./ipfs/data:/data/ipfs
+
+  polygon:
+    image: 0xpolygon/bor:latest
+    ports:
+      - "8545:8545"
+    volumes:
+      - ./polygon/data:/data
+
+  backend:
+    build:
+      context: ./backend
     ports:
       - "4000:4000"
     environment:
-      - NODE_ENV=production
-    command: npm start
-
-volumes:
-  backend_data:
+      - NODE_ENV=development
+    depends_on:
+      - ipfs
+      - polygon
+    volumes:
+      - ./backend:/app
