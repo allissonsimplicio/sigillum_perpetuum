@@ -1,0 +1,11 @@
+services:
+  compreface:
+    image: exadel/compreface
+    container_name: compreface
+    ports:
+      - "80:80"
+    volumes:
+      - compreface_data:/data
+
+volumes:
+  compreface_data:

@@ -1,0 +1,14 @@
+services:
+  flutter:
+    build: .
+    container_name: flutter
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./app:/usr/src/app
+      - flutter_data:/data
+    working_dir: /usr/src/app
+    command: flutter run -d web-server --web-port 8081
+
+volumes:
+  flutter_data:

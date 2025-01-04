@@ -1,0 +1,16 @@
+services:
+  backend:
+    build: .
+    container_name: backend
+    volumes:
+      - ./src:/usr/src/app
+      - backend_data:/data
+    working_dir: /usr/src/app
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=production
+    command: npm start
+
+volumes:
+  backend_data:

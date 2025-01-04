@@ -1,0 +1,10 @@
+services:
+  tesseract:
+    image: tesseractshadow/tesseract4re
+    container_name: tesseract_ocr
+    volumes:
+      - ./data:/data
+    command: ""
+
+volumes:
+  tesseract_data:

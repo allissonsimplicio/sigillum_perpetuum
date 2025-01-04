@@ -1,0 +1,15 @@
+services:
+  ipfs:
+    image: ipfs/go-ipfs:latest
+    container_name: ipfs
+    ports:
+      - "5001:5001" # API do IPFS
+      - "4001:4001" # Libp2p
+      - "8080:8080" # Gateway HTTP do IPFS
+    volumes:
+      - ipfs_staging:/export
+      - ipfs_data:/data/ipfs
+
+volumes:
+  ipfs_staging:
+  ipfs_data:
